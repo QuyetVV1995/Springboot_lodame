@@ -1,19 +1,19 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
 public class Girl {
-    // Đánh dấu để Spring inject một đối tượng Outfit vào đây
-    Outfit outfit;
 
-    // Đánh dấu để Spring inject một đối tượng Outfit vào đây
-    public Girl(@Qualifier("naked") Outfit outfit) {
-        // Spring sẽ inject outfit thông qua Constructor đầu tiên
-        // Ngoài ra, nó sẽ tìm Bean có @Qualifier("naked") trong context để ịnject
-        this.outfit = outfit;
+    @PostConstruct
+    public void postConstruct(){
+        System.out.println("\t>> Đối tượng Girl sau khi khởi tạo xong sẽ chạy hàm này");
     }
 
+    @PreDestroy
+    public void preDestroy(){
+        System.out.println("\t>> Đối tượng Girl trước khi bị destroy thì chạy hàm này");
+    }
 }
