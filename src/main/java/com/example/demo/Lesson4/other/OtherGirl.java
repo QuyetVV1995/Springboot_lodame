@@ -1,11 +1,11 @@
-package com.example.demo.Lesson4;
+package com.example.demo.Lesson4.other;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class Girl {
+public class OtherGirl {
     @Override
     public String toString() {
-        return "Girl.java";
+        return "OtherGirl.java";
     }
 }

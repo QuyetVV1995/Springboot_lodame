@@ -6,5 +6,5 @@ public interface GirlRepository {
      * @param name
      * @return
      */
-    Girl getGirlByName(String name);
+   // Girl getGirlByName(String name);
 }
