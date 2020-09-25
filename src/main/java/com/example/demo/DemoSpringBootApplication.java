@@ -13,12 +13,6 @@ public class DemoSpringBootApplication {
 		ApplicationContext context = SpringApplication.run(DemoSpringBootApplication.class, args);
 
 		// Khi chạy xong, lúc này context sẽ chứa các Bean có đánh dấu @Component
-		// Lấy Bean ra bằng cách
-		Outfit outfit = context.getBean(Outfit.class);
-
-		System.out.println("Instance: " + outfit);
-		outfit.wear();
-
 		Girl girl = context.getBean(Girl.class);
 
 		System.out.println("Girl Instance: " + girl);
