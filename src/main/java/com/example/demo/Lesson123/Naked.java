@@ -1,6 +1,5 @@
-package com.example.demo;
+package com.example.demo.Lesson123;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component("naked")
