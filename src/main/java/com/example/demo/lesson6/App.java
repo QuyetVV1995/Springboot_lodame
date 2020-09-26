@@ -9,13 +9,8 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(App.class, args);
 
-        DatabaseConnector mysql = (DatabaseConnector) context.getBean("mysqlConnector");
-        mysql.connect();
+        DatabaseConnector databaseConnector = context.getBean(DatabaseConnector.class);
+        databaseConnector.connect();
 
-        DatabaseConnector mongodb = (DatabaseConnector) context.getBean("mongodbConnector");
-        mongodb.connect();
-
-        DatabaseConnector postgresql = (DatabaseConnector) context.getBean("postgresqlConnector");
-        postgresql.connect();
     }
 }
