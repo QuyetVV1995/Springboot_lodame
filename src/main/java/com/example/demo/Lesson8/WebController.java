@@ -2,39 +2,50 @@ package com.example.demo.Lesson8;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-// Đánh dấu đây là một Controller
-// Nơi tiếp nhận các reqquest từ phía người dùng
 @Controller
 public class WebController {
+    // Sử dụng tạm List để chứa danh sách công việc
+    // Thay cho Database.
+    // Chỉ dùng cách này khi DEMO ^^
+    List<Todo> todoList = new CopyOnWriteArrayList<>();
 
-    // Đón nhận request GET
-    @GetMapping("") // Nếu người dùng request tới địa chỉ "/"
-    public String index() {
-        return "index"; // Trả về file index.html
+    /*
+        @RequestParam dùng để đánh dấu một biến là request param trong request gửi lên server.
+        Nó sẽ gán dữ liệu của param-name tương ứng vào biến
+     */
+
+    @GetMapping("/listTodo")
+    public String index(Model model, @RequestParam(value = "limit", required = false) Integer limit) {
+        // Trả về đối tượng todoList.
+        // Nếu người dùng gửi lên param limit thì trả về sublist của todoList
+        model.addAttribute("todoList", limit != null ? todoList.subList(0, limit) : todoList);
+
+        // Trả về template "listTodo.html"
+        return "listTodo";
     }
 
-    @GetMapping("/profile")
-    public String profile(Model model){
-        // Tạo ra thông tin
-        List<Info> profile = new ArrayList<>();
-        profile.add(new Info("fullname", "Vu Van Quyet"));
-        profile.add(new Info("nickname", "QuyetVV"));
-        profile.add(new Info("gmail", "quyeta2ubqn@gmail.com"));
-        profile.add(new Info("facebook", "https://www.facebook.com/vu.vanquyet.50/"));
-        profile.add(new Info("github", "https://github.com/QuyetVV1995"));
-
-        // Đưa thông tin vào Model
-        model.addAttribute("QuyetVVProfile", profile);
-
-        // TRả về template profile.html
-        return "profile";
+    @GetMapping("/addTodo")
+    public String addTodo(Model model) {
+        // Thêm mới một đối tượng Todo vào model
+        model.addAttribute("todo", new Todo());
+        // Trả về template addTodo.html
+        return "addTodo";
     }
 
+    /*
+   @ModelAttribute đánh dấu đối tượng Todo được gửi lên bởi Form Request
+    */
+    @PostMapping("/addTodo")
+    public String addTodo(@ModelAttribute Todo todo) {
+        // Thêm đối tượng todo vào list
+        todoList.add(todo);
+        // Trả về trang thành công success.html
+        return "success";
+    }
 }

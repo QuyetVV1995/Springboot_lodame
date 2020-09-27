@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>QuyetVV</title>
+    <title>QuyetVV Todo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!--CSS-->
     <link th:ref="@{/css/bootstrap.css}" rel="stylesheet"/>
@@ -13,7 +13,8 @@
 
 </head>
 <body>
-<h1 th:utext="#{quyetvv.hello}"> </h1>
-<a th:href="@{/profile}" class="btn btn-primary"> QuyetVV Profile</a>
+<h1> TODO APP </h1>
+<a th:href="@{/listTodo}" class="btn btn-primary"> xem danh sach</a>
+<a th:href="@{/addTodo}" class="btn btn-primary">+ Them cong viec</a>
 </body>
 </html>

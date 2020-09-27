@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QuyetVV to do</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--css-->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <!--js-->
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<h1>To do</h1>
+
+<h3>
+    <form></form> là thẻ tag mà bạn cần biết khi làm Web.
+    Nó tạo Request Form gửi tới server với thông tin và các thẻ input trong nó.
+    Ở đây, tôi gán vào Model một đối tượng Todo.
+    Trong form, chúng ta lấy ra đối tượng Todo và chỉ định bởi th:object="${todo}"
+    Gán thông tin người dùng nhập vào Todo bằng cú pháp th:field=*{tên_thuộc_tính}.
+    Bấm Button thì form sẽ gửi request POST có chứa Todo lên địa chỉ /addTodo.
+    form th:action="@{/addTodo}" th:object="${todo}" method="post">
+       title: input type="text" th:field="*{title}"/ /p
+      detail: input type="text" th:field="*{detail}"/ /p
+         type="submit" class="btn btn-succes"> ADD /button>
+    /form
+
+</h3>
+
+<form th:action="@{/addTodo}" th:object="${todo}" method="post">
+    <p>title: <input type="text" th:field="*{title}"/> </p>
+    <p>detail: <input type="text" th:field="*{detail}"/> </p>
+    <p> <button type="submit" class="btn btn-succes"> ADD </button> </p>
+</form>
+
+</body>
+</html>
