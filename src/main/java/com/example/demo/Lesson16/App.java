@@ -5,23 +5,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.StandardEnvironment;
 
 @SpringBootApplication
-@EnableConfigurationProperties
-public class App implements CommandLineRunner {
+public class App {
+
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
-    }
+//        SpringApplication.run(App.class, args);
 
-    @Autowired
-    AppProperties appProperties;
+        SpringApplication application = new SpringApplication(App.class);
+        ConfigurableEnvironment environment = new StandardEnvironment();
+//        Thay đổi môi trường bằng cách comment và xem kết quả
+        environment.setActiveProfiles("local");
+//        environment.setActiveProfiles("aws");
+        application.setEnvironment(environment);
+        ApplicationContext context = application.run(args);
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println("Global variable:");
-        System.out.println("\t Email: "+appProperties.getEmail());
-        System.out.println("\t GA ID: "+appProperties.getGoogleAnalyticsId());
-        System.out.println("\t Authors: " + appProperties.getAuthors());
-        System.out.println("\t Example Map: " + appProperties.getExampleMap());
+        LocalDatasource localDatasource = context.getBean(LocalDatasource.class);
+        System.out.println(localDatasource);
     }
 }
