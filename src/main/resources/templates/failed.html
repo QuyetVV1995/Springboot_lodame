@@ -12,13 +12,9 @@
 </head>
 
 <body>
-<h1>To do</h1>
-
-<form th:action="@{/addTodo}" th:object="${todo}" method="post">
-    <p>title: <input type="text" th:field="*{title}"/> </p>
-    <p>detail: <input type="text" th:field="*{detail}"/> </p>
-    <p> <button type="submit" class="btn btn-succes"> ADD </button> </p>
-</form>
-
+<h1>Todo</h1>
+<h1 style="color: red" th:text="#{quyetvv.message.failed}"></h1>
+<a th:href="@{/listTodo}" th:text="#{quyetvv.value.viewListTodo}" class="btn btn-primary"></a>
 </body>
+
 </html>

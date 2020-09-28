@@ -10,10 +10,10 @@
     <!--js-->
     <script th:src="@{/js/bootstrap.js}"></script>
 </head>
+
 <body>
     <h1>Todo</h1>
-    <h1> Success</h1>
-    <a th:href="@{/listTodo}" class="btn btn-primary">Xem danh sách công việc</a>
-
+    <h1 style="color: green" th:text="#{quyetvv.message.success}"></h1>
+    <a th:href="@{/listTodo}" th:text="#{quyetvv.value.viewListTodo}" class="btn btn-primary"></a>
 </body>
 </html>
