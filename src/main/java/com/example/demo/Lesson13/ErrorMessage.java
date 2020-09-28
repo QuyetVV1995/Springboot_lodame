@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class todo {
-    private String title;
-    private String detail;
+public class ErrorMessage {
+    private int statusCode;
+    private String message;
 }
